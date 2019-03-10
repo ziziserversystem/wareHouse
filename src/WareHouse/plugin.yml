@@ -1,9 +1,0 @@
-name: Warehouse
-main: Warehouse\Main
-version: 1.0.0
-api: 3.0.0
-load: POSTWORLD
-description: バーチャル倉庫を追加します
-commands:
- whouse:
-  description: バーチャル倉庫を開く
