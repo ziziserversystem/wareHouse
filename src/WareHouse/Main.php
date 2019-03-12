@@ -420,20 +420,20 @@ class Main extends PluginBase implements Listener{
 		foreach($player->getInventory()->getContents() as $item){
 		    if($item->hasEnchantments()){
 		        $player->sendMessage("§c>>インベントリにエンチャントされたアイテムがあります");
-                $player->sendMessage("§c>>エンチャントされたアイテムをインベントリから抜いてください");
-                $check = false;
-                break;
-            }else{
-                if($item->getDamage() > 0){
-                    if($item instanceof TieredTool){
-                        $player->sendMessage("§c>>インベントリに耐久値が減っているアイテムがあります");
-                        $player->sendMessage("§c>>耐久値が減っているアイテムをインベントリから抜いてください");
+                        $player->sendMessage("§c>>エンチャントされたアイテムをインベントリから抜いてください");
                         $check = false;
                         break;
-                    }
-                }
-            }
-        }
+                    }else{
+                        if($item->getDamage() > 0){
+                            if($item instanceof TieredTool){
+                                $player->sendMessage("§c>>インベントリに耐久値が減っているアイテムがあります");
+                                $player->sendMessage("§c>>耐久値が減っているアイテムをインベントリから抜いてください");
+                                $check = false;
+                                break;
+			    }
+			}
+		    }
+		}
         if(!$this->WHI->exists($user)){
             $this->sendModal($player,"§lアカウント登録","あなたにはまだ自分の倉庫がありません。\n作成しますか？\n","はい","いいえ",12000);
 			$this->info[$user] = "modal";
