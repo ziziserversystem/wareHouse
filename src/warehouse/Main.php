@@ -1,6 +1,6 @@
 <?php
 
-namespace Warehouse;
+namespace warehouse;
 
 use pocketmine\Player;
 use pocketmine\Plugin\PluginBase;
