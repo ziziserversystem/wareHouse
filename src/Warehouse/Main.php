@@ -241,6 +241,7 @@ class Main extends PluginBase implements Listener{
 							while($i){
 							$ib = $i."$user";
 								if($this->WH->exists($ib)){
+									$si = $player->getInventory()->getSize();
 									for($is = 1; $is <= $si; ++$is){
 								        $item = $player->getInventory()->getItem($is-1);
 								        $it = $this->WH->get($ib);
