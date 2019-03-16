@@ -284,7 +284,7 @@ class Main extends PluginBase implements Listener{
 						$item = $this->WHITEM[$user][$da];
 						$elements[] = [ 
 						'type' => "label",
-						'text' => "".$item["NAME"]." を§b手持ち§fに送信します。\n*§c一度に640個までしか送信できません。§f*\n*§c0個の場合、送信ができません。§f*\n", 
+						'text' => "".$item["NAME"]." を§b手持ち§fに送信します。\n*§c一度に320個までしか送信できません。§f*\n*§c0個の場合、送信ができません。§f*\n", 
 						]; 
 					        if($item["CO"] >= 320){
 							for($i = 0; $i <= 320; $i++){
@@ -426,15 +426,6 @@ class Main extends PluginBase implements Listener{
                         $player->sendMessage("§c>>エンチャントされたアイテムをインベントリから抜いてください");
                         $check = false;
                         break;
-                    /*}else{
-                        if($item->getDamage() > 0){
-                            if($item instanceof TieredTool){
-                                $player->sendMessage("§c>>インベントリに耐久値が減っているアイテムがあります");
-                                $player->sendMessage("§c>>耐久値が減っているアイテムをインベントリから抜いてください");
-                                $check = false;
-                                break;
-			    }
-			}*/
 		    }
 		}
         if(!$this->WHI->exists($user)){
