@@ -241,7 +241,7 @@ class Main extends PluginBase implements Listener{
 							while($i){
 							$ib = $i."$user";
 								if($this->WH->exists($ib)){
-								$item = $player->getInventory()->getItem($is-1);
+								$item = $player->getInventory()->getItem();
 								$it = $this->WH->get($ib);
 								$buttons[] = [ 
 								'text' => "§l§3名前§8: {$it["NAME"]} ({$item->getID()}:{$item->getDamage()}) ({$it["CO"]}個)", 
@@ -419,7 +419,7 @@ class Main extends PluginBase implements Listener{
                         $player->sendMessage("§c>>エンチャントされたアイテムをインベントリから抜いてください");
                         $check = false;
                         break;
-                    }else{
+                    /*}else{
                         if($item->getDamage() > 0){
                             if($item instanceof TieredTool){
                                 $player->sendMessage("§c>>インベントリに耐久値が減っているアイテムがあります");
@@ -428,7 +428,7 @@ class Main extends PluginBase implements Listener{
                                 break;
 			    }
 			}
-		    }
+		    }*/
 		}
         if(!$this->WHI->exists($user)){
             $this->sendModal($player,"§lアカウント登録","あなたにはまだ自分の倉庫がありません。\n作成しますか？\n","はい","いいえ",12000);
