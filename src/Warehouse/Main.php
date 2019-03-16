@@ -291,7 +291,7 @@ class Main extends PluginBase implements Listener{
 						}else{//自分の倉庫
 						$da = json_decode($data);
 						$item = $this->WHITEM[$user][$da];
-						$it = Item::get($item["ID"], $item["MATA"], 1);
+						$it = Item::get($item["ID"], $item["META"], 1);
 						$itName = $it->getName();
 						$elements[] = [ 
 						'type' => "label",
