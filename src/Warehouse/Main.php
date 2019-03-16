@@ -145,7 +145,7 @@ class Main extends PluginBase implements Listener{
 									$it = $this->WH->get($ib);
 										if($it["ID"] == $item->getID() && $it["META"] == $item->getDamage()){//かぶってるアイテムがあったら
 										$a = $it["CO"]+$item->getCount();
-										$this->WH->set($ib,["ID"=>$it["ID"],"META"=>$it["META"],"CO"=>$a,"CU"=>$it["CU"]]);
+										$this->WH->set($ib,["ID"=>$it["ID"],"META"=>$it["META"],"CO"=>$a]);
 										$this->WH->save();
 										break;
 										}else{
@@ -153,8 +153,7 @@ class Main extends PluginBase implements Listener{
 										}
 									}elseif(!$this->WH->exists($ib) and $is !== $si){
 									$ibs = $i."$user";
-									$value = $item->hasCustomName() ? $value = true : $value = false;
-									$this->WH->set($ibs,["ID"=>$item->getID(),"META"=>$item->getDamage(),"CO"=>$item->getCount(),"CU"=>$value]);
+									$this->WH->set($ibs,["ID"=>$item->getID(),"META"=>$item->getDamage(),"CO"=>$item->getCount()]);
 									$this->WH->save();
 									break;
 									}else{
@@ -329,7 +328,7 @@ class Main extends PluginBase implements Listener{
 							$it = $this->WH->get($ib);
 								if($it["ID"] == $item->getID() && $it["META"] == $item->getDamage()){//かぶってるアイテムがあったら
 								$a = $it["CO"]+$da;
-								$this->WH->set($ib,["ID"=>$it["ID"],"META"=>$it["META"],"CO"=>$a,"CU"=>$it["CU"]]);
+								$this->WH->set($ib,["ID"=>$it["ID"],"META"=>$it["META"],"CO"=>$a]);
 								$this->WH->save();
 								$a = true;
 								break;
@@ -338,8 +337,7 @@ class Main extends PluginBase implements Listener{
 								}
 							}elseif(!$this->WH->exists($ib) and $a !== true){
 							$ibs = $i."$user";
-							$value = $item->hasCustomName() ? $value = true : $value = false;
-							$this->WH->set($ibs,["ID"=>$item->getID(),"META"=>$item->getDamage(),"CO"=>$da,"CU"=>$value]);
+							$this->WH->set($ibs,["ID"=>$item->getID(),"META"=>$item->getDamage(),"CO"=>$da]);
 							$this->WH->save();
 							break;
 							}else{
@@ -371,7 +369,7 @@ class Main extends PluginBase implements Listener{
 								$its = $this->WH->get($ibs);
 								$coun = $counts-1;
 								$ibss = $coun."$user";
-								$this->WH->set($ibss,["ID"=>$its["ID"],"META"=>$its["META"],"CO"=>$its["CO"],"CU"=>$its["CU"]]);
+								$this->WH->set($ibss,["ID"=>$its["ID"],"META"=>$its["META"],"CO"=>$its["CO"]]);
 								$this->WH->remove($ibs);
 								$this->WH->save();
 								$counts++;
@@ -381,13 +379,10 @@ class Main extends PluginBase implements Listener{
 								}
 							}
 						}else{
-						$this->WH->set($ib,["ID"=>$it["ID"],"META"=>$it["META"],"CO"=>$a,"CU"=>$it["CU"]]);
+						$this->WH->set($ib,["ID"=>$it["ID"],"META"=>$it["META"],"CO"=>$a]);
 						$this->WH->save();
 						}
 					$items = Item::get($it["ID"],$it["META"],$da);
-					if($it["CU"] == true){
-					$items->setCustomName($it["NAME"]);
-					}
 					$player->getInventory()->addItem($items);
 					$this->sendForm($player,"§l完了","手持ちへの移動が完了しました。",[],0);
 					$this->info[$user] = "";
