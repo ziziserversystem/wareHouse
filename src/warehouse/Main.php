@@ -286,22 +286,33 @@ class Main extends PluginBase implements Listener{
 						'type' => "label",
 						'text' => "".$item["NAME"]." を§b手持ち§fに送信します。\n*§c一度に640個までしか送信できません。§f*\n*§c0個の場合、送信ができません。§f*\n", 
 						]; 
-						$count = $item->getCount();
-					        if($count >= 320){
-						$count = "320";
+					        if($item->getCoumt >= 320){
+							for($i = 0; $i <= 320; $i++){
+						        $a[] = "".$i."";
+						        }
+						        $elements[] = [ 
+						        'type' => "step_slider",
+						        'text' => "送信する数", 
+						        'steps' => $a,
+						        'defaultIndex' => "0"
+						        ]; 
+						        $this->WHITEMS[$user] = $da;
+					       	        $this->sendCustom($player,"§l自分の倉庫/手持ちに送信",$elements,14001);
+						        $this->info[$user] = "custom";
+						}else{
+							for($i = 0; $i <= $item->getCount; $i++){
+						        $a[] = "".$i."";
+						        }
+						        $elements[] = [ 
+						        'type' => "step_slider",
+						        'text' => "送信する数", 
+						        'steps' => $a,
+						        'defaultIndex' => "0"
+						        ]; 
+						        $this->WHITEMS[$user] = $da;
+					       	        $this->sendCustom($player,"§l自分の倉庫/手持ちに送信",$elements,14001);
+						        $this->info[$user] = "custom";
 						}
-						for($i = 0; $i <= $count; $i++){
-						$a[] = "".$i."";
-						}
-						$elements[] = [ 
-						'type' => "step_slider",
-						'text' => "送信する数", 
-						'steps' => $a,
-						'defaultIndex' => "0"
-						]; 
-						$this->WHITEMS[$user] = $da;
-						$this->sendCustom($player,"§l自分の倉庫/手持ちに送信",$elements,14001);
-						$this->info[$user] = "custom";
 						}
 					break;
 					}
