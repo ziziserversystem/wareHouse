@@ -241,6 +241,7 @@ class Main extends PluginBase implements Listener{
 							while($i){
 							$ib = $i."$user";
 								if($this->WH->exists($ib)){
+								$item = $player->getInventory()->getItem($is-1);
 								$it = $this->WH->get($ib);
 								$buttons[] = [ 
 								'text' => "§l§3名前§8: {$it["NAME"]} ({$item->getID()}:{$item->getDamage()}) ({$it["CO"]}個)", 
