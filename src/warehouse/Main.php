@@ -1,5 +1,7 @@
 <?php
+
 namespace Warehouse;
+
 use pocketmine\Player;
 use pocketmine\Plugin\PluginBase;
 use pocketmine\Server;
@@ -16,7 +18,9 @@ use pocketmine\command\CommandSender;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\Config;
+
 class Main extends PluginBase implements Listener{
+	
 	public function onEnable(){
 		if(!file_exists($this->getDataFolder())){
     		mkdir($this->getDataFolder(), 0744, true);
@@ -29,8 +33,8 @@ class Main extends PluginBase implements Listener{
 	$this->info = [];
 	}
 //API	/*==========================================================================================================================*/
-	public function sendForm(Player $player, $title, $come, $buttons, $id) {
-		
+	
+	public function sendForm(Player $player, $title, $come, $buttons, $id) {	
 	$pk = new ModalFormRequestPacket(); 
 	$pk->formId = $id;
 	$this->pdata[$pk->formId] = $player;
@@ -44,8 +48,8 @@ class Main extends PluginBase implements Listener{
 	$player->dataPacket($pk);
 	$this->lastFormData[$player->getName()] = $data;
 	}
-	public function sendModal(Player $player, $title, $come, $up, $down, $id) {
-		
+	
+	public function sendModal(Player $player, $title, $come, $up, $down, $id) {	
 	$pk = new ModalFormRequestPacket(); 
 	$pk->formId = $id;
 	$data = [ 
@@ -58,8 +62,8 @@ class Main extends PluginBase implements Listener{
 	$pk->formData = json_encode( $data, JSON_PRETTY_PRINT | JSON_BIGINT_AS_STRING | JSON_UNESCAPED_UNICODE );
 	$player->dataPacket($pk);
 	}
-	public function sendCustom(Player $player, $title, $elements, $id) {
-		
+	
+	public function sendCustom(Player $player, $title, $elements, $id) {	
 	$pk = new ModalFormRequestPacket(); 
 	$pk->formId = $id;
 	$this->pdata[$pk->formId] = $player;
@@ -71,8 +75,8 @@ class Main extends PluginBase implements Listener{
 	$pk->formData = json_encode( $data, JSON_PRETTY_PRINT | JSON_BIGINT_AS_STRING | JSON_UNESCAPED_UNICODE );
 	$player->dataPacket($pk);
 	}
-	public function startMenu($player) {
-		
+	
+	public function startMenu($player) {	
 	$user = $player->getName();
 	$buttons[] = [ 
 	'text' => "倉庫を使用する", 
@@ -90,11 +94,13 @@ class Main extends PluginBase implements Listener{
 	$this->info[$user] = "form";
 	}
 //API	/*==========================================================================================================================*/
+	
 	public function onJoin(PlayerJoinEvent $event){
 	$player = $event->getPlayer();
 	$user = $player->getName();
 	$this->info[$user] = "";
 	}
+	
 	public function onSYORIDESU(DataPacketReceiveEvent $event){
 	$player = $event->getPlayer();
 	$pk = $event->getPacket();
@@ -156,6 +162,7 @@ class Main extends PluginBase implements Listener{
 						$this->startMenu($player);
 						}
 					break;
+							
 					case 12300://持ち物すべて移動
 						if($data == "true\n"){
 						$i = 1;
@@ -179,6 +186,7 @@ class Main extends PluginBase implements Listener{
 						}
 					break;
 					}
+						
 				case "form":
 					switch($pk->formId){
 					case 12001:
@@ -201,6 +209,7 @@ class Main extends PluginBase implements Listener{
 						$this->info[$user] = "modal";
 						}
 					break;
+							
 					case 12100:
 						if($data == 0){//自分の持ち物
 						$si = $player->getInventory()->getSize();
@@ -241,6 +250,7 @@ class Main extends PluginBase implements Listener{
 						$this->startMenu($player);
 						}
 					break;
+							
 					case 13000://倉庫にアイテム送信
 						if($data == 0){//自分の持ち物
 						$this->startMenu($player);
@@ -265,6 +275,7 @@ class Main extends PluginBase implements Listener{
 						$this->info[$user] = "custom";
 						}
 					break;
+							
 					case 14000://手持ちにアイテム送信
 						if($data == 0){//自分の持ち物
 						$this->startMenu($player);
@@ -290,6 +301,7 @@ class Main extends PluginBase implements Listener{
 						}
 					break;
 					}
+						
 				case "custom":
 					switch($pk->formId){
 					case 13001://倉庫に送信
@@ -332,6 +344,7 @@ class Main extends PluginBase implements Listener{
 					$this->info[$user] = "";
 					}
 					break;
+							
 					case 14001://手持ちに送信
 					$da = json_decode($data)[1]++;//個数
 					if($da == 0){
@@ -380,8 +393,8 @@ class Main extends PluginBase implements Listener{
 			}
 		}
 	}
-    public function onCommand(CommandSender $sender, Command $command, string $label, array $args):bool{
-        
+	
+    public function onCommand(CommandSender $sender, Command $command, string $label, array $args):bool{       
 	if($sender->getName() === "CONSOLE") {
 	$sender->sendMessage(">>§cこのコマンドはゲーム内で使ってください");
 	return false;
