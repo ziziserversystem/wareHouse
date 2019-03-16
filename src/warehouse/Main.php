@@ -134,7 +134,7 @@ class Main extends PluginBase implements Listener{
 								$ib = $i."$user";
 									if($this->WH->exists($ib)){
 									$it = $this->WH->get($ib);
-										if($it["ID"] == $item->getID() &&) $it["META"] == $item->getDamage()){//かぶってるアイテムがあったら
+										if($it["ID"] == $item->getID() && $it["META"] == $item->getDamage()){//かぶってるアイテムがあったら
 										$a = $it["CO"]+$item->getCount();
 										$this->WH->set($ib,["ID"=>$it["ID"],"META"=>$it["META"],"CO"=>$a,"NAME"=>$it["NAME"],"CU"=>$it["CU"]]);
 										$this->WH->save();
