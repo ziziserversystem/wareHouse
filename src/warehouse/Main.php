@@ -273,9 +273,9 @@ class Main extends PluginBase implements Listener{
 						$item = $this->WHITEM[$user][$da];
 						$elements[] = [ 
 						'type' => "label",
-						'text' => "".$item["NAME"]." を§b手持ち§fに送信します。\n*§c一度に64個までしか送信できません。§f*\n*§c0個の場合、送信ができません。§f*\n", 
+						'text' => "".$item["NAME"]." を§b手持ち§fに送信します。\n*§c一度に640個までしか送信できません。§f*\n*§c0個の場合、送信ができません。§f*\n", 
 						]; 
-						for($i = 0; $i <= 64; $i++){
+						for($i = 0; $i <= 640; $i++){
 						$a[] = "".$i."";
 						}
 						$elements[] = [ 
