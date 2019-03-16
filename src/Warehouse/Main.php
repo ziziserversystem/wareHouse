@@ -241,16 +241,13 @@ class Main extends PluginBase implements Listener{
 							while($i){
 							$ib = $i."$user";
 								if($this->WH->exists($ib)){
-									$si = $player->getInventory()->getSize();
-									for($is = 1; $is <= $si; ++$is){
-								        $item = $player->getInventory()->getItem($is-1);
+								        $item = $player->getInv
 								        $it = $this->WH->get($ib);
 								        $buttons[] = [ 
-								        'text' => "§l§3名前§8: {$it["NAME"]} ({$item->getID()}:{$item->getDamage()}) ({$it["CO"]}個)", 
+								        'text' => "§l§3名前§8: {$it["NAME"]} ({$it["ID"]}:{$it["META"]}) ({$it["CO"]}個)", 
 								        ]; 
 								        $this->WHITEM[$user][$i] = $it;
 								        $i++;
-									}
 								}else{
 								$i--;
 								break;
@@ -295,7 +292,7 @@ class Main extends PluginBase implements Listener{
 						$item = $this->WHITEM[$user][$da];
 						$elements[] = [ 
 						'type' => "label",
-						'text' => "{$item["NAME"]} ({$item->getID()}:{item->getDamage()}) を§b手持ち§fに送信します。\n*§c一度に64個までしか送信できません。§f*\n*§c0個の場合、送信ができません。§f*\n", 
+						'text' => "{$item["NAME"]} ({$it["ID"]}:{$it["META"]}) を§b手持ち§fに送信します。\n*§c一度に64個までしか送信できません。§f*\n*§c0個の場合、送信ができません。§f*\n", 
 						]; 
 						for($i = 0; $i <= $item["CO"]; $i++){
 						$a[] = "".$i."";
