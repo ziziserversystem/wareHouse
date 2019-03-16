@@ -300,7 +300,7 @@ class Main extends PluginBase implements Listener{
 					       	        $this->sendCustom($player,"§l自分の倉庫/手持ちに送信",$elements,14001);
 						        $this->info[$user] = "custom";
 						}else{
-							for($i = 0; $i <= $item["CO"] $i++){
+							for($i = 0; $i <= $item["CO"]; $i++){
 						        $a[] = "".$i."";
 						        }
 						        $elements[] = [ 
