@@ -288,7 +288,7 @@ class Main extends PluginBase implements Listener{
 						]; 
 						$count = $item->getCount();
 					        if($count >= 320){
-						$count = 320;
+						$count = "320";
 						}
 						for($i = 0; $i <= $count; $i++){
 						$a[] = "".$i."";
