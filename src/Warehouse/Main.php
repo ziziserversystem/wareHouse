@@ -295,7 +295,7 @@ class Main extends PluginBase implements Listener{
 						$itName = $it->getName()
 						$elements[] = [ 
 						'type' => "label",
-						'text' => "{$itName} ({$it["ID"]}:{$it["META"]}) を§b手持ち§fに送信します。\n*§c一度に64個までしか送信できません。§f*\n*§c0個の場合、送信ができません。§f*\n"
+						'text' => "{$itName} ({$item["ID"]}:{$item["META"]}) を§b手持ち§fに送信します。\n*§c一度に64個までしか送信できません。§f*\n*§c0個の場合、送信ができません。§f*\n"
 						]; 
 						for($i = 0; $i <= $item["CO"]; $i++){
 						$a[] = "".$i."";
