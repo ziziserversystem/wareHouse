@@ -227,7 +227,7 @@ class Main extends PluginBase implements Listener{
 							$item = $player->getInventory()->getItem($is-1);
 								if($item->getId() !== 0){
 								$buttons[] = [ 
-								'text' => "§l§2名前§8: ".$item->getName(). (.$item->getID().:.$item->getDamage().)" (".$item->getCount()."個)", 
+								'text' => "§l§2名前§8: {$item->getName()} ({$item->getID()}:{$item->getDamage()}) ({$item->getCount()}個)", 
 								]; 
 								$this->MYITEM[$user][$is] = $item;
 								}
@@ -243,7 +243,7 @@ class Main extends PluginBase implements Listener{
 								if($this->WH->exists($ib)){
 								$it = $this->WH->get($ib);
 								$buttons[] = [ 
-								'text' => "§l§3名前§8: ".$it["NAME"]. (.$item->getID().:.$item->getDamage().)" (".$it["CO"]."個)", 
+								'text' => "§l§3名前§8: {$it["NAME"]} ({$item->getID()}:{$item->getDamage()}) ({$it["CO"]}個)", 
 								]; 
 								$this->WHITEM[$user][$i] = $it;
 								$i++;
@@ -266,7 +266,7 @@ class Main extends PluginBase implements Listener{
 						$item = $this->MYITEM[$user][$da];
 						$elements[] = [ 
 						'type' => "label",
-						'text' => "".$item->getName(). (.$item->getID().:.$item->getDamage().)" を§a倉庫§fに送信します。\n*§c0個の場合、送信ができません。§f*\n", 
+						'text' => "{$item->getName()} ({$item->getID()}:{$item->getDamage()}) を§a倉庫§fに送信します。\n*§c0個の場合、送信ができません。§f*\n", 
 						]; 
 						for($i = 0; $i <= $item->getCount(); $i++){
 						$a[] = "".$i."";
@@ -291,7 +291,7 @@ class Main extends PluginBase implements Listener{
 						$item = $this->WHITEM[$user][$da];
 						$elements[] = [ 
 						'type' => "label",
-						'text' => "".$item["NAME"]. (.$item->getID().:$item->getDamage().)" を§b手持ち§fに送信します。\n*§c一度に64個までしか送信できません。§f*\n*§c0個の場合、送信ができません。§f*\n", 
+						'text' => "{$item["NAME"]} ({$item->getID()}:{item->getDamage()}) を§b手持ち§fに送信します。\n*§c一度に64個までしか送信できません。§f*\n*§c0個の場合、送信ができません。§f*\n", 
 						]; 
 						for($i = 0; $i <= $item["CO"]; $i++){
 						$a[] = "".$i."";
