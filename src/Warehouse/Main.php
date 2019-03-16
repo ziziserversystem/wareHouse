@@ -427,8 +427,8 @@ class Main extends PluginBase implements Listener{
                                 $check = false;
                                 break;
 			    }
-			}
-		    }*/
+			}*/
+		    }
 		}
         if(!$this->WHI->exists($user)){
             $this->sendModal($player,"§lアカウント登録","あなたにはまだ自分の倉庫がありません。\n作成しますか？\n","はい","いいえ",12000);
