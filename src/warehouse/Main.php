@@ -134,7 +134,7 @@ class Main extends PluginBase implements Listener{
 								$ib = $i."$user";
 									if($this->WH->exists($ib)){
 									$it = $this->WH->get($ib);
-										if($it["NAME"] == $item->getName()){//かぶってるアイテムがあったら
+										if($it["ID"] == $item->getID() &&) $it["META"] == $item->getDamage()){//かぶってるアイテムがあったら
 										$a = $it["CO"]+$item->getCount();
 										$this->WH->set($ib,["ID"=>$it["ID"],"META"=>$it["META"],"CO"=>$a,"NAME"=>$it["NAME"],"CU"=>$it["CU"]]);
 										$this->WH->save();
@@ -220,7 +220,7 @@ class Main extends PluginBase implements Listener{
 							$item = $player->getInventory()->getItem($is-1);
 								if($item->getId() !== 0){
 								$buttons[] = [ 
-								'text' => "§l§2名前§8: ".$item->getName()." (".$item->getCount()."個)", 
+								'text' => "§l§2名前§8: {$item->getName()} ({$item->getID()}:{$item->getDamage()}) ({$item->getCount()}個)", 
 								]; 
 								$this->MYITEM[$user][$is] = $item;
 								}
@@ -236,7 +236,7 @@ class Main extends PluginBase implements Listener{
 								if($this->WH->exists($ib)){
 								$it = $this->WH->get($ib);
 								$buttons[] = [ 
-								'text' => "§l§3名前§8: ".$it["NAME"]." (".$it["CO"]."個)", 
+								'text' => "§l§3名前§8: {$it["NAME"]} ({$it["ID"]}:{$it["META"]}) ({$it["CO"]}個)", 
 								]; 
 								$this->WHITEM[$user][$i] = $it;
 								$i++;
@@ -286,7 +286,7 @@ class Main extends PluginBase implements Listener{
 						'type' => "label",
 						'text' => "".$item["NAME"]." を§b手持ち§fに送信します。\n*§c一度に640個までしか送信できません。§f*\n*§c0個の場合、送信ができません。§f*\n", 
 						]; 
-					        if($item->getCoumt >= 320){
+					        if($item["CO"] >= 320){
 							for($i = 0; $i <= 320; $i++){
 						        $a[] = "".$i."";
 						        }
@@ -300,7 +300,7 @@ class Main extends PluginBase implements Listener{
 					       	        $this->sendCustom($player,"§l自分の倉庫/手持ちに送信",$elements,14001);
 						        $this->info[$user] = "custom";
 						}else{
-							for($i = 0; $i <= $item->getCount; $i++){
+							for($i = 0; $i <= $item["CO"] $i++){
 						        $a[] = "".$i."";
 						        }
 						        $elements[] = [ 
@@ -335,7 +335,7 @@ class Main extends PluginBase implements Listener{
 						$ib = $i."$user";
 							if($this->WH->exists($ib)){
 							$it = $this->WH->get($ib);
-								if($it["NAME"] == $item->getName()){//かぶってるアイテムがあったら
+								if($it["ID"] == $item->getID() && $it["META"] == $item->getDamage()){//かぶってるアイテムがあったら
 								$a = $it["CO"]+$da;
 								$this->WH->set($ib,["ID"=>$it["ID"],"META"=>$it["META"],"CO"=>$a,"NAME"=>$it["NAME"],"CU"=>$it["CU"]]);
 								$this->WH->save();
@@ -426,7 +426,7 @@ class Main extends PluginBase implements Listener{
                         $player->sendMessage("§c>>エンチャントされたアイテムをインベントリから抜いてください");
                         $check = false;
                         break;
-                    }else{
+                    /*}else{
                         if($item->getDamage() > 0){
                             if($item instanceof TieredTool){
                                 $player->sendMessage("§c>>インベントリに耐久値が減っているアイテムがあります");
@@ -434,7 +434,7 @@ class Main extends PluginBase implements Listener{
                                 $check = false;
                                 break;
 			    }
-			}
+			}*/
 		    }
 		}
         if(!$this->WHI->exists($user)){
