@@ -286,10 +286,9 @@ class Main extends PluginBase implements Listener{
 						'type' => "label",
 						'text' => "".$item["NAME"]." を§b手持ち§fに送信します。\n*§c一度に640個までしか送信できません。§f*\n*§c0個の場合、送信ができません。§f*\n", 
 						]; 
-					        if($item->getCount(); >= 320){
-						$count = 320
-						}else{
 						$count = $item->getCount();
+					        if($count >= 320){
+						$count = 320;
 						}
 						for($i = 0; $i <= $count; $i++){
 						$a[] = "".$i."";
