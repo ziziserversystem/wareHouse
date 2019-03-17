@@ -317,8 +317,7 @@ class Main extends PluginBase implements Listener{
 					break;
 					}
 						
-				case "custom":
-					switch($pk->formId){
+.					switch($pk->formId){
 					case 13001://倉庫に送信
 					$da = json_decode($data)[1]++;//個数
 					if($da == 0){
@@ -361,21 +360,18 @@ class Main extends PluginBase implements Listener{
 							
 					case 14001://手持ちに送信
 					$da = json_decode($data)[1]++;//個数
-					$das = json_decode($data);
-					$items = $this->WHITEM[$user][$das];
-					$object = Item::get($items["ID"], $items["META"], $da);
+		                        $count = $this->WHITEMS[$user];
+					$ib = $this->WHITEMS[$user]."$user";
+					$it = $this->WH->get($ib);
+					$a = $it["CO"] - $da;
 					if($da == 0){
 					$this->sendForm($player,"§lエラー","§c0個の場合、送信ができません。\nもう一度やり直してください。",[],0);
 					$this->startMenu($player);
 					}else{
-					if(!$player->getInventory()->canAddItem($object)){
+					if(!$player->getInventory()->canAddItem($ib)){
 					$this->sendForm($player,"§lエラー","§cインベントリに空きがありません。\nもう一度やり直してください。",[],0);
 					$this->startMenu($player);
 					}else{
-					$count = $this->WHITEMS[$user];
-					$ib = $this->WHITEMS[$user]."$user";
-					$it = $this->WH->get($ib);
-					$a = $it["CO"] - $da;
 						if($a == 0){
 						$this->WH->remove($ib);
 						$this->WH->save();
