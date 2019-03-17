@@ -317,6 +317,7 @@ class Main extends PluginBase implements Listener{
 					break;
 					}
 						
+				case "custom":
 					switch($pk->formId){
 					case 13001://倉庫に送信
 					$da = json_decode($data)[1]++;//個数
@@ -324,6 +325,7 @@ class Main extends PluginBase implements Listener{
 					$this->sendForm($player,"§lエラー","§c0個の場合、送信ができません。\nもう一度やり直してください。",[],0);
 					$this->startMenu($player);
 					}else{
+					$item = $this->MYITEMS[$user];
 					$player->getInventory()->removeItem($item);
 					$item->setCount($item->getCount() - $da);
 					$player->getInventory()->addItem($item);
@@ -359,15 +361,15 @@ class Main extends PluginBase implements Listener{
 					break;
 							
 					case 14001://手持ちに送信
-					$da = json_decode($data)[1]++;
+					$da = json_decode($data)[1]++;//個数
 					if($da == 0){
 					$this->sendForm($player,"§lエラー","§c0個の場合、送信ができません。\nもう一度やり直してください。",[],0);
 					$this->startMenu($player);
 					}else{
-						$count = $this->WHITEMS[$user];
-					        $ib = $this->WHITEMS[$user]."$user";
-				  	        $it = $this->WH->get($ib);
-					        $a = $it["CO"] - $da;
+					$count = $this->WHITEMS[$user];
+					$ib = $this->WHITEMS[$user]."$user";
+					$it = $this->WH->get($ib);
+					$a = $it["CO"] - $da;
 						if($a == 0){
 						$this->WH->remove($ib);
 						$this->WH->save();
@@ -391,10 +393,10 @@ class Main extends PluginBase implements Listener{
 						$this->WH->set($ib,["ID"=>$it["ID"],"META"=>$it["META"],"CO"=>$a,"NAME"=>$it["NAME"],"CU"=>$it["CU"]]);
 						$this->WH->save();
 						}
+					$items = Item::get($it["ID"],$it["META"],$da);
 					if($it["CU"] == true){
 					$items->setCustomName($it["NAME"]);
 					}
-					$items = Item::get($it["ID"],$it["META"],$da);
 					$player->getInventory()->addItem($items);
 					$this->sendForm($player,"§l完了","手持ちへの移動が完了しました。",[],0);
 					$this->info[$user] = "";
