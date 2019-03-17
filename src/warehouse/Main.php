@@ -317,7 +317,7 @@ class Main extends PluginBase implements Listener{
 					break;
 					}
 						
-.					switch($pk->formId){
+					switch($pk->formId){
 					case 13001://倉庫に送信
 					$da = json_decode($data)[1]++;//個数
 					if($da == 0){
