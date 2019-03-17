@@ -364,11 +364,12 @@ class Main extends PluginBase implements Listener{
 					$ib = $this->WHITEMS[$user]."$user";
 					$it = $this->WH->get($ib);
 					$a = $it["CO"] - $da;
+					$items = Item::get($it["ID"],$it["META"],$da);
 					if($da == 0){
 					$this->sendForm($player,"§lエラー","§c0個の場合、送信ができません。\nもう一度やり直してください。",[],0);
 					$this->startMenu($player);
 					}else{
-					if(!$player->getInventory()->canAddItem($ib)){
+					if(!$player->getInventory()->canAddItem($items)){
 					$this->sendForm($player,"§lエラー","§cインベントリに空きがありません。\nもう一度やり直してください。",[],0);
 					$this->startMenu($player);
 					}else{
@@ -395,10 +396,10 @@ class Main extends PluginBase implements Listener{
 						$this->WH->set($ib,["ID"=>$it["ID"],"META"=>$it["META"],"CO"=>$a,"NAME"=>$it["NAME"],"CU"=>$it["CU"]]);
 						$this->WH->save();
 						}
-					$items = Item::get($it["ID"],$it["META"],$da);
 					if($it["CU"] == true){
 					$items->setCustomName($it["NAME"]);
 					}
+					$items = Item::get($it["ID"],$it["META"],$da);
 					$player->getInventory()->addItem($items);
 					$this->sendForm($player,"§l完了","手持ちへの移動が完了しました。",[],0);
 					$this->info[$user] = "";
