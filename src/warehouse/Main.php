@@ -321,11 +321,17 @@ class Main extends PluginBase implements Listener{
 					switch($pk->formId){
 					case 13001://倉庫に送信
 					$da = json_decode($data)[1]++;//個数
+					$das = json_decode($data);
+					$items = $this->WHITEM[$user][$das];
+					$object = Item::get($items["ID"], $items["META"], $da);
 					if($da == 0){
 					$this->sendForm($player,"§lエラー","§c0個の場合、送信ができません。\nもう一度やり直してください。",[],0);
 					$this->startMenu($player);
 					}else{
-					$item = $this->MYITEMS[$user];
+					if(!$player->getInventory()->canAddItem($object)){
+					$this->sendForm($player,"§lエラー","§cインベントリに空きがありません。\nもう一度やり直してください。",[],0);
+					$this->startMenu($player);
+					}else{
 					$player->getInventory()->removeItem($item);
 					$item->setCount($item->getCount() - $da);
 					$player->getInventory()->addItem($item);
