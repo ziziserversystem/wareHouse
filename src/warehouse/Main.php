@@ -367,11 +367,9 @@ class Main extends PluginBase implements Listener{
 					$items = Item::get($it["ID"],$it["META"],$da);
 					if($da == 0){
 					$this->sendForm($player,"§lエラー","§c0個の場合、送信ができません。\nもう一度やり直してください。",[],0);
-					$this->startMenu($player);
 					}else{
 					if(!$player->getInventory()->canAddItem($items)){
 					$this->sendForm($player,"§lエラー","§cインベントリに空きがありきません。\nもう一度やり直してください。",[],0);
-					$this->startMenu($player);
 					}else{
 					$count = $this->WHITEMS[$user];
 					$ib = $this->WHITEMS[$user]."$user";
