@@ -359,20 +359,15 @@ class Main extends PluginBase implements Listener{
 					break;
 							
 					case 14001://手持ちに送信
-					$da = json_decode($data)[1]++;//個数
-		                        $count = $this->WHITEMS[$user];
-					$ib = $this->WHITEMS[$user]."$user";
-					$it = $this->WH->get($ib);
-					$a = $it["CO"] - $da;
-					$items = Item::get($it["ID"],$it["META"],$da);
+					$da = json_decode($data)[1]++;
 					if($da == 0){
 					$this->sendForm($player,"§lエラー","§c0個の場合、送信ができません。\nもう一度やり直してください。",[],0);
 					$this->startMenu($player);
 					}else{
-					if(!$player->getInventory()->canAddItem($items)){
-					$this->sendForm($player,"§lエラー","§cインベントリに空きがありません。\nもう一度やり直してください。",[],0);
-					$this->startMenu($player);
-					}else{
+						$count = $this->WHITEMS[$user];
+					        $ib = $this->WHITEMS[$user]."$user";
+				  	        $it = $this->WH->get($ib);
+					        $a = $it["CO"] - $da;
 						if($a == 0){
 						$this->WH->remove($ib);
 						$this->WH->save();
@@ -403,7 +398,6 @@ class Main extends PluginBase implements Listener{
 					$player->getInventory()->addItem($items);
 					$this->sendForm($player,"§l完了","手持ちへの移動が完了しました。",[],0);
 					$this->info[$user] = "";
-					}
 					}
 					break;
 					}
