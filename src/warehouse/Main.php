@@ -364,6 +364,7 @@ class Main extends PluginBase implements Listener{
 					$this->sendForm($player,"§l完了","倉庫への移動が完了しました。",[],0);
 					$this->info[$user] = "";
 					}
+					}
 					break;
 							
 					case 14001://手持ちに送信
