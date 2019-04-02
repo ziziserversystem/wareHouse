@@ -428,8 +428,8 @@ class Main extends PluginBase implements Listener{
 		$check = true;
 		foreach($player->getInventory()->getContents() as $item){
 		    if($item->hasEnchantments()){
-		        $player->sendMessage("§c>>インベントリにエンチャントされたアイテムがあります");
-                        $player->sendMessage("§c>>エンチャントされたアイテムをインベントリから抜いてください");
+		        $player->sendMessage("§a【運営】 §cインベントリにエンチャントされたアイテムがあります");
+                        $player->sendMessage("§a【運営】 §cエンチャントされたアイテムをインベントリから抜いてください");
                         $check = false;
                         break;
 		    }
